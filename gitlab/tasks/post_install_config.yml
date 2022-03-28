@@ -1,0 +1,22 @@
+---
+- name: Reconfigure Gitlab
+  shell:
+    cmd: gitlab-ctl reconfigure
+
+- name: Retrieve temporary password
+  shell:
+    cmd: grep -E "Password:" /etc/gitlab/initial_root_password
+  register: temp_root_pass
+
+- name: Show temporary password
+  debug:
+    msg: "{{ temp_root_pass.stdout }}"
+
+- name: Reset root password
+  shell:
+    cmd: | 
+      
+      gitlab-rake "gitlab:password:reset[root]"<<EOF
+      {{ password }}
+      {{ password }}
+      EOF

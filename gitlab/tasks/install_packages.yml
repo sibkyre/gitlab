@@ -1,0 +1,14 @@
+---
+- name: Set hostname to gitlab.example.com
+  hostname:
+   name: gitlab.example.com
+
+- name: Install packages
+  yum:
+    name: "{{ packages }}"
+    state: present
+
+  notify:
+   - Start and enable postfix
+   - Add firewall rules
+   - Reload firewall

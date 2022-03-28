@@ -1,0 +1,21 @@
+---
+# handlers file for gitlab
+- name: Start and enable postfix
+  systemd:
+    name: postfix
+    state: started
+    enabled: yes
+
+
+- name: Add firewall rules
+  firewalld:
+    immediate: yes
+    permanent: yes
+    service: "{{ item }}"
+    state: enabled
+  loop: "{{ firewall_rules }}"
+
+- name: Reload firewall
+  systemd:
+    name: firewalld
+    state: reloaded 

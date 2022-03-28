@@ -1,0 +1,14 @@
+---
+# defaults file for gitlab
+packages:
+ - curl
+ - policycoreutils
+ - openssh-server
+ - perl
+ - postfix
+ - tar
+ - wget
+
+firewall_rules:
+ - http
+ - https

@@ -1,0 +1,7 @@
+---
+- name: Install GitLab
+  force_handlers: yes
+  become: yes
+  hosts: all
+  roles:
+    - gitlab
