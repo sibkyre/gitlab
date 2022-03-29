@@ -1,4 +1,4 @@
-Ansible Role for Gitlab installationi (Tested on CentOS 8 Stream)
+Ansible Role for Gitlab installation (Tested on CentOS 8 Stream)
 
 Official Docs:
 
