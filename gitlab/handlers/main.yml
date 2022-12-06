@@ -1,14 +1,14 @@
 ---
 # handlers file for gitlab
 - name: Start and enable postfix
-  systemd:
+  ansible.builtin.systemd:
     name: postfix
     state: started
     enabled: yes
 
 
 - name: Add firewall rules
-  firewalld:
+  ansible.posix.firewalld:
     immediate: yes
     permanent: yes
     service: "{{ item }}"
@@ -16,6 +16,6 @@
   loop: "{{ firewall_rules }}"
 
 - name: Reload firewall
-  systemd:
+  ansible.builtin.systemd:
     name: firewalld
     state: reloaded 
