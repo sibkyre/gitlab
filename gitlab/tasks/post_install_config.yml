@@ -1,19 +1,19 @@
 ---
 - name: Reconfigure Gitlab
-  shell:
+  ansible.builtin.shell:
     cmd: gitlab-ctl reconfigure
 
 - name: Retrieve temporary password
-  shell:
+  ansible.builtin.shell:
     cmd: grep -E "Password:" /etc/gitlab/initial_root_password
   register: temp_root_pass
 
 - name: Show temporary password
-  debug:
+  ansible.builtin.debug:
     msg: "{{ temp_root_pass.stdout }}"
 
 - name: Reset root password
-  shell:
+  ansible.builtin.shell:
     cmd: | 
       
       gitlab-rake "gitlab:password:reset[root]"<<EOF

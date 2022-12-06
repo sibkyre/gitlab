@@ -1,6 +1,6 @@
 ---
 - name: Download script
-  get_url:
+  ansible.builtin.get_url:
     dest: /tmp
     url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh
     mode: 700
@@ -8,15 +8,15 @@
     group: root
 
 - name: Execute script
-  shell:
+  ansible.builtin.shell:
     cmd: /tmp/script.rpm.sh
 
 - name: Export var name
-  shell:
+  ansible.builtin.shell:
     cmd: export EXTERNAL_URL="https://gitlab.example.com"
 
 - name: Install Gitlab
-  yum:
+  ansible.builtin.yum:
     name: gitlab-ee
     update_cache: yes
     state: present

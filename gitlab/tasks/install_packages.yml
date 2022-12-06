@@ -1,10 +1,10 @@
 ---
 - name: Set hostname to gitlab.example.com
-  hostname:
+  ansible.builtin.hostname:
    name: gitlab.example.com
 
 - name: Install packages
-  yum:
+  ansible.builtin.yum:
     name: "{{ packages }}"
     state: present
 
