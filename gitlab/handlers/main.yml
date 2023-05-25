@@ -11,9 +11,11 @@
   ansible.posix.firewalld:
     immediate: yes
     permanent: yes
-    service: "{{ item }}"
+    service: "{{ fw_rule }}"
     state: enabled
   loop: "{{ firewall_rules }}"
+  loop_control:
+   loop_var: fw_rule
 
 - name: Reload firewall
   ansible.builtin.systemd:
